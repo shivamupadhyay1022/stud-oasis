@@ -123,8 +123,6 @@ const TopPerformers = () => {
 
 function Dashboard() {
   return (
-    <div>
-        <Navbar/>
       <div className=" py-8 animate-in mx-16">
         <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
         <p className="mt-2 text-muted-foreground text-gray-400 font-semibold">
@@ -256,7 +254,6 @@ function Dashboard() {
           <TopPerformers />
         </div>
       </div>
-    </div>
   );
 }
 

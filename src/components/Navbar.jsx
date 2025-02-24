@@ -13,7 +13,7 @@ const Navbar = () => {
         {/* Logo */}
         <div className="flex items-center">
           <span className="text-xl font-bold flex items-center">
-            <span className="text-blue-500 text-2xl mr-2">🎓</span> EduTrack
+            <span className="text-blue-500 text-2xl mr-2">🎓</span> Student Oasis
           </span>
         </div>
 
