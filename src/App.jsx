@@ -7,6 +7,7 @@ import "./App.css";
 import Students from "./pages/Students";
 import Navbar from "./components/Navbar";
 import { ToastContainer } from "react-toastify";
+import StudentProfile from "./pages/StudentProfile";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/students" element={<Students />} />
+          <Route path="/students/:id" element={<StudentProfile />} />
         </Route>
       </Routes>
     </div>

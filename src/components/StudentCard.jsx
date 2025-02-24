@@ -1,8 +1,9 @@
 import React,{useState} from 'react'
 import { supabase } from '../supabase';
+import { useNavigate } from 'react-router-dom';
 
 function StudentCard({ details }) {
-   
+   const navigate = useNavigate();
   return (
     <div className="bg-white border-2 border-gray-200 rounded-lg p-4 w-full max-w-md">
       <div className="flex items-center justify-between mb-3">
@@ -42,7 +43,7 @@ function StudentCard({ details }) {
           </svg>
           <span>Message</span>
         </button>
-        <button className="bg-indigo-400 hover:bg-indigo-600 text-white px-4 py-2 rounded-md shadow-md transition duration-200">
+        <button onClick={()=>navigate(`/students/${details.id}`)} className="bg-indigo-400 hover:bg-indigo-600 text-white px-4 py-2 rounded-md shadow-md transition duration-200">
           View Details
         </button>
       </div>
