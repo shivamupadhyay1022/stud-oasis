@@ -1,22 +1,42 @@
-import React, {useState} from "react";
+import React, {useState, useLayoutEffect} from "react";
 import Overview from "../components/StudentProfile/Overview";
 import ClassTracking from "../components/StudentProfile/ClassTracking";
 import TestRecords from "../components/StudentProfile/TestRecords";
 import FeeDetails from "../components/StudentProfile/FeeDetails";
 import Attendance from "../components/StudentProfile/Attendance";
+import { useParams } from "react-router-dom";
+import { supabase } from "../supabase";
 
 const StudentProfile = () => {
-  const student = {
-    name: "Alice Johnson",
-    email: "alice@example.com",
-    phone: "+1 234 567 8900",
-    grade: "10th Grade",
-    parent: {
-      name: "John Johnson",
-      occupation: "Business Analyst",
-      contact: "+1 234 567 8901",
-    },
-  };
+
+  const [student, setStudent] = useState("");
+  const { id } = useParams();
+
+  useLayoutEffect(() => {
+    fetchStudent();
+  }, [id]);
+ 
+  async function fetchStudent() {
+      try {
+        const { data, error } = await supabase
+          .from("students")
+          .select("*")
+          .eq("id", id);
+        // console.log(data[0]);
+        setStudent(data[0]);
+      } catch (error) {
+        toast.error("Error" + error, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
+    }
 
   const [activeTab, setActiveTab] = useState("Overview");
 
@@ -52,12 +72,6 @@ const StudentProfile = () => {
           <h1 className="text-2xl font-semibold">{student.name}</h1>
           <p className="text-gray-500">Student Profile</p>
         </div>
-        <button
-          className="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg shadow-md"
-          onClick={() => setIsEditing(!isEditing)}
-        >
-          {isEditing ? "Save" : "Edit Profile"}
-        </button>
       </div>
 
       {/* Navigation Tabs */}
